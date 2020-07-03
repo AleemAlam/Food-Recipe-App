@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'img/bg-img/breadcumb3.jpg' %});">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="breadcumb-text text-center">
+          <h2>Recipe</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<div class="receipe-post-area section-padding-80">
+
+  <!-- Receipe Slider -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="receipe-slider owl-carousel">
+          <img src="{% static 'img/bg-img/bg5.jpg' %}" alt="">
+          <img src="{% static 'img/bg-img/bg5.jpg' %}" alt="">
+          <img src="{% static 'img/bg-img/bg5.jpg' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Receipe Content Area -->
+  <div class="receipe-content-area">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="receipe-headline my-5">
+            <span>{{recipe.added_date}}</span>
+            <h2>{{recipe.title}}</h2>
+            <div class="receipe-duration">
+              <h6>Prep: {{recipe.prepare_time}}</h6>
+              <h6>Cook: {{recipe.cook_time}}</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="text-right my-5">
+            <a href="#" class="btn delicious-btn">For Begginers</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          {% for recipe_detail in recipe_details %}
+
+
+          <!-- Single Preparation Step -->
+          <div class="single-preparation-step d-flex">
+            <h4>{{forloop.counter | ordinal}}</h4>
+            <p>{{recipe_detail}}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Ingredients -->
+        <div class="col-12 col-lg-4">
+          <div class="ingredients">
+            <h4>Ingredients</h4>
+            {% for recipe_ingredient in recipe_ingredients %}
+            <!-- Custom Checkbox -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" disabled class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">{{recipe_ingredient}}</label>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% include "subscription.html" %}
+
+      <div class="row">
+        <div class="col-12">
+          <div class="section-heading text-left">
+            <h3>Leave a comment</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="contact-form-area">
+            <form action="#" method="post">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+                <div class="col-12 col-lg-6">
+                  <input type="email" class="form-control" id="email" placeholder="E-mail">
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control" id="subject" placeholder="Subject">
+                </div>
+                <div class="col-12">
+                  <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="btn delicious-btn mt-30" type="submit">Post Comments</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'img/bg-img/breadcumb3.jpg' %});">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="breadcumb-text text-center">
+          <h2>All Receipies</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+<br>
+<br>
+<br>
+
+<!-- ##### Best Receipe Area Start ##### -->
+
+
+<!-- Receipe Post Search -->
+<div class="receipe-post-search mb-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-heading">
+          <h3>Search Recipe</h3>
+        </div>
+      </div>
+    </div>
+
+    <form action="#" method="post">
+      <div class="row">
+
+        <div class="col-12 col-lg-3">
+          <select name="select1" id="select1">
+            <option value="1">All Receipies Categories</option>
+            <option value="1">All Receipies Categories 2</option>
+            <option value="1">All Receipies Categories 3</option>
+            <option value="1">All Receipies Categories 4</option>
+            <option value="1">All Receipies Categories 5</option>
+          </select>
+        </div>
+        <div class="col-12 col-lg-3">
+          <select name="select1" id="select2">
+            <option value="1">All Receipies Categories</option>
+            <option value="1">All Receipies Categories 2</option>
+            <option value="1">All Receipies Categories 3</option>
+            <option value="1">All Receipies Categories 4</option>
+            <option value="1">All Receipies Categories 5</option>
+          </select>
+        </div>
+        <div class="col-12 col-lg-3">
+          <input type="search" name="search" placeholder="Search Receipies">
+        </div>
+        <div class="col-12 col-lg-3 text-right">
+          <button type="submit" class="btn delicious-btn">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<section class="best-receipe-area">
+  <div class="container">
+
+    <div class="row">
+      {% for recipe in all_recipe %}
+      <!-- Single Best Receipe Area -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="single-best-receipe-area mb-30">
+          <img src="{{recipe.photo.url}}" style="height: 353px; width:500px;" alt="">
+          <div class="receipe-content">
+            <a href="{% url 'single_recipe' recipe.id %}">
+              <h5>{{recipe.title}}</h5>
+              <p>{{recipe.added_date}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+<!-- ##### Best Receipe Area End ##### -->
+
+{% endblock %}
